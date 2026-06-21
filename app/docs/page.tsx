@@ -7,7 +7,7 @@ export default function DocsPage() {
         <div>
           <h1 className="text-4xl font-bold">LVG Hujjatlari</h1>
           <p className="mt-3 text-muted-foreground">
-            LVG platformasidan foydalanish bo'yicha to'liq qo'llanma.
+            LVG platformasidan foydalanish bo&apos;yicha to&apos;liq qo&apos;llanma.
           </p>
         </div>
 
@@ -16,7 +16,7 @@ export default function DocsPage() {
           <p>
             LVG — dasturchilar uchun tayyor funksiyalar va algoritmlar
             kutubxonasi. Platforma orqali funksiyalarni qidirish,
-            o'rganish va loyihalaringizda ishlatishingiz mumkin.
+            o&apos;rganish va loyihalaringizda ishlatishingiz mumkin.
           </p>
         </section>
 
@@ -27,7 +27,7 @@ export default function DocsPage() {
 
           <p>
             Barcha funksiyalar katalogini quyidagi sahifa orqali
-            ko'rishingiz mumkin:
+            ko&apos;rishingiz mumkin:
           </p>
 
           <code className="block rounded-lg border p-3">
@@ -49,7 +49,7 @@ export default function DocsPage() {
           </code>
 
           <ul className="list-disc pl-6">
-            <li>To'liq kod</li>
+            <li>To&apos;liq kod</li>
             <li>Tavsif</li>
             <li>Murakkablik (Complexity)</li>
             <li>Misollar</li>
@@ -97,11 +97,11 @@ export default function DocsPage() {
 
         <section className="space-y-3">
           <h2 className="text-2xl font-semibold">
-            Developer bo'lish
+            Developer bo&apos;lish
           </h2>
 
           <p>
-            Platformaga yangi funksiyalar qo'shish uchun
+            Platformaga yangi funksiyalar qo&apos;shish uchun
             developer arizasi yuborishingiz mumkin.
           </p>
 

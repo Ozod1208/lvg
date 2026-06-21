@@ -29,7 +29,7 @@ export default function HomePage() {
           </Button>
             <Button size="lg" className="rounded-xl px-8 shadow-lg shadow-primary/20">
               <Link href={'/functions'}>
-                Funksiyalarni ko'rish
+                Funksiyalarni ko&apos;rish
               </Link>
             </Button>
           </div>

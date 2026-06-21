@@ -2,7 +2,6 @@
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 import bcrypt from 'bcryptjs';
-import { errorMonitor } from 'events';
 
 export async function POST(request: Request) {
   try {

@@ -63,10 +63,10 @@ export const Header = () => {
     }, 300) // 300ms kutadi (Foydalanuvchi tez yozganda baza qiynalmaydi)
 
     return () => clearTimeout(delayDebounceFn)
-  }, [searchQuery])
+  }, [searchQuery, supabase])
 
   // Natija bosilganda tozalash va yo'naltirish
-  const handleSelectResult = (funcName: string) => {
+  const handleSelectResult = () => {
     setSearchQuery('')
     setIsOpen(false)
   }
@@ -106,11 +106,11 @@ export const Header = () => {
                   <div className="px-3 py-1.5 text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
                     Topilgan funksiyalar
                   </div>
-                  {results.map((func) => (
-                    <Link href={`/func/${func.name}`}>
+                  {results.map((func, idx) => (
+                    <Link key={idx} href={`/func/${func.name}`}>
                     <button
                       key={func.name}
-                      onClick={() => handleSelectResult(func.name)}
+                      onClick={handleSelectResult}
                       className="w-full text-left px-3 py-2 rounded-xl hover:bg-muted transition-colors flex flex-col gap-0.5 group"
                     >
                       <span className="text-sm font-mono font-bold text-foreground group-hover:text-primary flex items-center gap-1">
@@ -144,14 +144,14 @@ export const Header = () => {
           <Button asChild variant="ghost" size="sm" className="rounded-xl font-medium text-muted-foreground hover:text-foreground">
             <Link href="/docs" className="flex items-center gap-1.5">
               <BookOpen className="h-4 w-4" />
-              Docs
+              Hujjatlar
             </Link>
           </Button>
 
           <Button asChild variant="outline" size="sm" className="rounded-xl border bg-muted/30 text-xs font-mono font-semibold text-muted-foreground hover:text-foreground shadow-sm">
             <Link href="/developer" className="flex items-center gap-1.5">
               <Code2 className="h-3.5 w-3.5 text-primary" />
-              <span>Developer Mode</span>
+              <span>Dasturchilar sahifasi</span>
             </Link>
           </Button>
         </div>
@@ -185,7 +185,7 @@ export const Header = () => {
                   <Button asChild variant="ghost" className="w-full justify-start gap-3 h-11 rounded-xl text-sm font-semibold">
                     <Link href="/docs">
                       <BookOpen className="h-4 w-4 text-primary" />
-                      Hujjatlar (Docs)
+                      Hujjatlar
                     </Link>
                   </Button>
 
@@ -194,7 +194,7 @@ export const Header = () => {
                   <Button asChild variant="secondary" className="w-full justify-start gap-3 h-11 rounded-xl font-mono text-xs font-bold">
                     <Link href="/developer">
                       <Code2 className="h-4 w-4 text-primary" />
-                      Developer Mode
+                      Dasturchilar sahifasi
                     </Link>
                   </Button>
                 </div>

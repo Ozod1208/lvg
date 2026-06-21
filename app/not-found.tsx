@@ -27,7 +27,7 @@ export default function NotFound() {
           Sahifa topilmadi
         </h2>
         <p className="text-sm text-muted-foreground">
-          Siz qidirayotgan funksiya, kod snippetlari yoki sahifa mavjud emas yoki boshqa manzilga ko'chirilgan.
+          Siz qidirayotgan funksiya, kod snippetlari yoki sahifa mavjud emas yoki boshqa manzilga ko&apos;chirilgan.
         </p>
       </div>
 
@@ -42,7 +42,7 @@ export default function NotFound() {
         
         <Button asChild variant="outline" size="lg" className="h-10 px-6 font-medium bg-transparent">
           <Link href="/docs">
-            Hujjatlarni o'qish
+            Hujjatlarni o&apos;qish
           </Link>
         </Button>
       </div>

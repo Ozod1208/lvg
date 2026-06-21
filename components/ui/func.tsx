@@ -139,7 +139,7 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({ func, badgeType = "t
           {/* Action Tugmasi */}
           <Button asChild size="sm" className="h-9 gap-1.5 rounded-xl text-xs font-semibold px-5 shadow-sm group/btn">
             <Link href={`/func/${func.name}`}>
-              Kodni ko'rish
+              Kodni ko&apos;rish
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
             </Link>
           </Button>

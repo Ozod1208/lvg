@@ -96,7 +96,7 @@ export default function FuncPage() {
     }
 
     loadData()
-  }, [name])
+  }, [name, supabase])
 
   const formatUzDate = (dateString: string) => {
     if (!dateString) return "";
@@ -136,7 +136,7 @@ export default function FuncPage() {
     return (
       <div className="flex h-[80vh] w-full flex-col items-center justify-center gap-3 text-sm text-muted-foreground">
         <Loader2 className="h-6 w-6 animate-spin text-primary" />
-        <span className="font-medium font-mono">Ma'lumotlar yuklanmoqda...</span>
+        <span className="font-medium font-mono">Ma&apos;lumotlar yuklanmoqda...</span>
       </div>
     )
   }

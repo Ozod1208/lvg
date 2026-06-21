@@ -65,9 +65,9 @@ export default function DeveloperRequestPage() {
           <div className='flex flex-col items-center'>
             <Logo />
           </div>
-          <CardTitle className="text-xl font-bold font-mono tracking-tight">Adminlik uchun so'rov</CardTitle>
+          <CardTitle className="text-xl font-bold font-mono tracking-tight">Adminlik uchun so&apos;rov</CardTitle>
           <CardDescription className="text-xs max-w-sm mx-auto">
-            Aniq ma'lumot kiriting, shunda biz sizga ishonamiz va xabar beramiz
+            Aniq ma&apos;lumot kiriting, shunda biz sizga ishonamiz va xabar beramiz
           </CardDescription>
         </CardHeader>
 
@@ -100,7 +100,7 @@ export default function DeveloperRequestPage() {
 
             {/* Data */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-medium text-muted-foreground">Maqsadingiz va ma'lumot</label>
+              <label className="text-xs font-mono font-medium text-muted-foreground">Maqsadingiz va ma&apos;lumot</label>
               <Textarea 
                 placeholder="Nima maqsadda admin bo'lmoqchisiz..." 
                 className="rounded-xl bg-background/50 min-h-[120px] resize-none focus-visible:ring-primary text-sm leading-relaxed"
