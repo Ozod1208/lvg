@@ -13,6 +13,7 @@ export interface PythonFunction {
   created_at: string
   name: string
   title: string
+  language: string
   code: string
   description: string
   difficulty: "easy" | "medium" | "hard"
@@ -75,7 +76,7 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({ func, badgeType = "t
             </Badge>
 
             <Badge variant="outline" className="font-mono text-[10px] bg-background/60">
-              Py {func.version}
+              {func.language} - {func.version}
             </Badge>
 
             {/* Algoritmik murakkablik belgilari */}

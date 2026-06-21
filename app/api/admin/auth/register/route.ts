@@ -1,7 +1,8 @@
-// app/api/functions/add/route.ts
+// app/api/admin/auth/register/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 import bcrypt from 'bcryptjs';
+import { errorMonitor } from 'events';
 
 export async function POST(request: Request) {
   try {
@@ -15,22 +16,22 @@ export async function POST(request: Request) {
     
     const {
       auth: {
-        privatePassword
+        private_password
       }, 
-      adminUser,
-      adminPassword,
+      admin_user,
+      admin_password,
     } = body;
 
-    if (privatePasswordReal !== privatePassword) {
+    if (privatePasswordReal !== private_password) {
       return NextResponse.json(
         { error: "Tizim huquqi yo'q" },
         { status: 400 }
       );
     }
 
-    if (!adminUser || !adminPassword) {
+    if (!admin_user || !admin_password) {
       return NextResponse.json(
-        { error: "Majburiy maydonlar to'ldirilmadi! (adminUser, adminPassword)" },
+        { error: "Majburiy maydonlar to'ldirilmadi! (admin_user, admin_password)" },
         { status: 400 }
       );
     }
@@ -38,8 +39,12 @@ export async function POST(request: Request) {
     const { data, error } = await supabase
       .from('admins')
       .select('*')
-      .eq('name', adminUser)
+      .eq('name', admin_user)
       .maybeSingle()
+    
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 
     if (data) {
       return NextResponse.json(
@@ -48,12 +53,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const hashedPassword = await bcrypt.hash(adminPassword, 10)
+    const hashedPassword = await bcrypt.hash(admin_password, 10)
 
     const { data: dat, error: erro } = await supabase
       .from('admins')
       .insert([{
-        name: adminUser, password: hashedPassword
+        name: admin_user, password: hashedPassword
       }])
       .select()
 
@@ -62,7 +67,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(
-      { message: 'Muvaffaqiyatli yaratilindi!', data: dat[0] },
+      { message: 'Muvaffaqiyatli admin yaratilindi!', data: dat[0] },
       { status: 200 }
     );
 

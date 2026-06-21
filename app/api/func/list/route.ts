@@ -1,3 +1,4 @@
+// app/api/func/list/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 
@@ -8,7 +9,7 @@ export async function GET() {
     
     const { data, error } = await supabase
       .from('func')
-      .select('name, title')
+      .select('name, title, language')
     
     if (error) {
       return NextResponse.json(

@@ -10,7 +10,7 @@ export const Footer = () => {
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="/docs" className="hover:text-primary">Hujjatlar</Link>
-            <Link href="/github" className="hover:text-primary">GitHub</Link>
+            <Link href="https://github.com/Ozod1208/lvg" className="hover:text-primary">GitHub</Link>
           </div>
         </div>
       </footer>

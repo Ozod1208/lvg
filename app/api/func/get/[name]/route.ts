@@ -1,3 +1,4 @@
+// app/api/func/get/[name]/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 
@@ -6,8 +7,8 @@ export async function GET(
   { params }: { params: Promise<{ name: string }> } 
 ) {
   try {
-    const giveLike = async (name: string) => {
-      await supabase.rpc('increment_like', { func_name: name })
+    const increment_used = async (name: string) => {
+      await supabase.rpc('increment_use', { func_name: name })
     }
 
     const supabase = await createServer()
@@ -34,7 +35,7 @@ export async function GET(
       );
     }
 
-    await giveLike(name)
+    await increment_used(name)
 
     return NextResponse.json(
       { message: `${name} nomli funksiya topildi`, data },

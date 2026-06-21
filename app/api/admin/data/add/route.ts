@@ -1,4 +1,4 @@
-// app/api/functions/add/route.ts
+// app/api/admin/data/add/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 import bcrypt from 'bcryptjs';
@@ -13,21 +13,23 @@ export async function POST(request: Request) {
     
     const {
       auth: {
-        adminUser, adminPassword
+        admin_user, admin_password
       }, 
       name,
       title,
+      language,
       categories,
       difficulty, 
       code, 
       description, 
-      timeComplexity, 
-      spaceComplexity,
-      forRun,
-      version
+      time_complexity, 
+      space_complexity,
+      for_run,
+      version,
+      file_end
     } = body;
 
-    if (!adminUser || !adminPassword) {
+    if (!admin_user || !admin_password) {
       return NextResponse.json(
         { error: "Admin huquqi yo'q" },
         { status: 400 }
@@ -37,7 +39,7 @@ export async function POST(request: Request) {
     const { data: hashedPassword, error: errorr } = await supabase
       .from('admins')
       .select('password')
-      .eq('name', adminUser)
+      .eq('name', admin_user)
       .single()
 
     if (!hashedPassword) {
@@ -47,7 +49,7 @@ export async function POST(request: Request) {
       );
     }
   
-    const isMatch = await bcrypt.compare(adminPassword, hashedPassword.password)
+    const isMatch = await bcrypt.compare(admin_password, hashedPassword.password)
 
     if (!isMatch) {
       return NextResponse.json(
@@ -57,9 +59,9 @@ export async function POST(request: Request) {
     }
 
     // 2. Eng muhim tekshirishlar (Validation)
-    if (!title || !name || !code || !description || !timeComplexity || !spaceComplexity || !forRun) {                       
+    if (!title || !name || !code || !description || !time_complexity || !space_complexity || !for_run || !language || !file_end) {                       
       return NextResponse.json(
-        { error: "Majburiy maydonlar to'ldirilmadi! (name, title, code, description, timeComplexity, spaceComplexity, forRun)" },
+        { error: "Majburiy maydonlar to'ldirilmadi! (name, title, code, description, timeComplexity, spaceComplexity, forRun, language, fileEnd)" },
         { status: 400 }
       );
     }
@@ -84,14 +86,16 @@ export async function POST(request: Request) {
         {
           name,
           title,
+          language,
           categories: categories || ['general'],
           difficulty: difficulty || 'easy',
           code,
           description,
-          time_complexity: timeComplexity,
-          space_complexity: spaceComplexity,
-          for_run: forRun,
-          version: version || 'all version supported',
+          time_complexity,
+          space_complexity,
+          for_run,
+          version: version || 'hamma versiyada ishlaydi',
+          file_end,
         }
       ])
       .select(); // Qo'shilgan ma'lumotni qaytarib olish uchun

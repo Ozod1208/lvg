@@ -172,7 +172,7 @@ export default function FuncPage() {
               {data.difficulty}
             </Badge>
             <Badge variant="outline" className="font-mono text-[10px] bg-muted/50">
-              Py: {data.version}
+              {data.language} - {data.version}
             </Badge>
             {data.categories?.map((cat: string, idx: number) => (
               <Badge key={idx} variant="secondary" className="text-[10px] font-mono">
@@ -222,7 +222,7 @@ export default function FuncPage() {
               <Clock className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Time Complexity</p>
+              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Vaqt murakkabligi</p>
               <p className="text-base font-mono font-bold text-foreground">{data.time_complexity}</p>
             </div>
           </CardContent>
@@ -234,7 +234,7 @@ export default function FuncPage() {
               <Cpu className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Space Complexity</p>
+              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Xotira murakkabligi</p>
               <p className="text-base font-mono font-bold text-foreground">{data.space_complexity}</p>
             </div>
           </CardContent>
@@ -246,7 +246,7 @@ export default function FuncPage() {
               <Calendar className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Qo'shilgan sana</p>
+              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Yaratilingan sana</p>
               <p className="text-sm font-semibold text-foreground">
                 {formatUzDate(data.created_at)}
               </p>
@@ -260,10 +260,10 @@ export default function FuncPage() {
         <Tabs defaultValue="source" className="w-full">
           <TabsList className="grid w-full max-w-[400px] grid-cols-2 bg-muted rounded-xl p-1">
             <TabsTrigger value="source" className="rounded-lg text-xs font-semibold gap-1.5">
-              <Terminal className="h-3.5 w-3.5" /> Source Code
+              <Terminal className="h-3.5 w-3.5" /> Asosiy kod
             </TabsTrigger>
             <TabsTrigger value="execution" className="rounded-lg text-xs font-semibold gap-1.5">
-              <Box className="h-3.5 w-3.5" /> For Run / Test
+              <Box className="h-3.5 w-3.5" /> Test uchun
             </TabsTrigger>
           </TabsList>
 
@@ -272,7 +272,7 @@ export default function FuncPage() {
             <div className="relative group rounded-2xl overflow-hidden border bg-zinc-950 dark:bg-zinc-900/40">
               {/* Kod paneli sarlavhasi */}
               <div className="flex items-center justify-between px-4 py-3 bg-zinc-900 border-b border-zinc-800 text-zinc-400 font-mono text-xs select-none">
-                <span>{data.name}.py</span>
+                <span>{data.name}.{data.file_end}</span>
                 <Button 
                   size="sm" 
                   variant="ghost" 

@@ -2,27 +2,9 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { 
-  Code2, 
-  Terminal, 
-  Bot, 
-  Globe, 
-  ShieldCheck, 
-  Check
-} from "lucide-react"
-import { useState } from "react"
+import { Download } from "lucide-react"
 
 export default function HomePage() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText('pip install lvg');
-    setCopied(true);
-    
-    // 2 soniyadan keyin ikonkani yana eski holiga qaytaramiz
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <div>
       {/* 1. HERO SECTION */}
@@ -38,33 +20,20 @@ export default function HomePage() {
             Vaqtingizni tejang, tayyor funksiyalardan foydalaning.
           </p>
 
-          {/* CLI Widget */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="group relative flex items-center gap-3 px-4 py-2.5 rounded-xl border bg-muted/50 font-mono text-sm backdrop-blur-sm transition-all hover:border-primary/50">
-              <Terminal className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">$</span>
-              <span className="text-foreground">pip install lvg</span>
-              <Button 
-                 onClick={handleCopy} 
-                 variant="outline" 
-                 size="icon" 
-                 className="h-6 w-6 ml-2"
-                 disabled={copied}
-               >
-                 {copied ? (
-                   <Check className="h-3 w-3" /> // Nusxalansa tasdiq belgisi chiqadi
-                 ) : (
-                   <Code2 className="h-3 w-3" />
-                 )}
-               </Button>
-            </div>
+          <div className="flex gap-6 justify-center items-center">
+          <Button asChild variant={'outline'} className="rounded-xl gap-2 font-mono">
+            <Link href="/lvg.exe" download="lvg.exe">
+              <Download className="h-4 w-4" />
+              CLI Dasturini Yuklab Olish 
+            </Link>
+          </Button>
             <Button size="lg" className="rounded-xl px-8 shadow-lg shadow-primary/20">
               <Link href={'/functions'}>
                 Funksiyalarni ko'rish
               </Link>
             </Button>
           </div>
-        </div>
+          </div>
       </section>
     </div>
   )

@@ -1,4 +1,4 @@
-// app/api/functions/edit/route.ts
+// app/api/admin/data/edit/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 import bcrypt from 'bcryptjs';
@@ -11,35 +11,35 @@ export async function POST(request: Request) {
     const body = await request.json();
     
     const {
-      auth: { adminUser, adminPassword }, 
-      nameSelected, // Qidirilayotgan eski funksiya nomi
-      edit          // Yangilanadigan maydonlar obyekti (name, title, categories, etc.)
+      auth: { admin_user, admin_password }, 
+      name_selected, 
+      edit      
     } = body;
 
     // Admin avtorizatsiyasini tekshirish
-    if (!adminUser || !adminPassword) {
+    if (!admin_user || !admin_password) {
       return NextResponse.json({ error: "Admin huquqi yo'q" }, { status: 400 });
     }
 
     const { data: hashedPassword } = await supabase
       .from('admins')
       .select('password')
-      .eq('name', adminUser)
+      .eq('name', admin_user)
       .single();
 
     if (!hashedPassword) {
       return NextResponse.json({ error: "Admin topilmadi" }, { status: 404 });
     }
   
-    const isMatch = await bcrypt.compare(adminPassword, hashedPassword.password);
+    const isMatch = await bcrypt.compare(admin_password, hashedPassword.password);
     if (!isMatch) {
       return NextResponse.json({ error: "Admin parol xato" }, { status: 400 });
     }
 
     // 2. Eng muhim tekshirishlar (Validation)
-    if (!nameSelected || !edit || typeof edit !== 'object') {                      
+    if (!name_selected || !edit || typeof edit !== 'object') {                      
       return NextResponse.json(
-        { error: "Majburiy maydonlar to'ldirilmadi! (nameSelected va edit obyekti kerak)" },
+        { error: "Majburiy maydonlar to'ldirilmadi! (name_selected va edit obyekti kerak)" },
         { status: 400 }
       );
     }
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     const { data, error } = await supabase
       .from('func')
       .update(edit) // edit obyekti ichidagi hamma narsa (version, title, code) shundoq o'tadi
-      .eq('name', nameSelected)
+      .eq('name', name_selected)
       .select();
 
     if (error) {

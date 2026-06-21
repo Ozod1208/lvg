@@ -1,4 +1,4 @@
-// app/api/functions/add/route.ts
+// app/api/admin/data/remove/route.ts
 import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 import bcrypt from 'bcryptjs';
@@ -13,12 +13,12 @@ export async function POST(request: Request) {
     
     const {
       auth: {
-        adminUser, adminPassword
+        admin_user, admin_password
       }, 
-      nameSelected,
+      name_selected,
     } = body;
 
-    if (!adminUser || !adminPassword) {
+    if (!admin_user || !admin_password) {
       return NextResponse.json(
         { error: "Admin huquqi yo'q" },
         { status: 400 }
@@ -28,8 +28,12 @@ export async function POST(request: Request) {
     const { data: hashedPassword, error: errorr } = await supabase
       .from('admins')
       .select('password')
-      .eq('name', adminUser)
+      .eq('name', admin_user)
       .single()
+
+    if (errorr) {
+      return NextResponse.json({ error: errorr.message }, { status: 500 });
+    }
 
     if (!hashedPassword) {
       return NextResponse.json(
@@ -38,7 +42,7 @@ export async function POST(request: Request) {
       );
     }
   
-    const isMatch = await bcrypt.compare(adminPassword, hashedPassword.password)
+    const isMatch = await bcrypt.compare(admin_password, hashedPassword.password)
 
     if (!isMatch) {
       return NextResponse.json(
@@ -48,9 +52,9 @@ export async function POST(request: Request) {
     }
 
     // 2. Eng muhim tekshirishlar (Validation)
-    if (!nameSelected) {                       
+    if (!name_selected) {                       
       return NextResponse.json(
-        { error: "Majburiy maydonlar to'ldirilmadi! (nameSelected)" },
+        { error: "Majburiy maydonlar to'ldirilmadi! (name_selected)" },
         { status: 400 }
       );
     }
@@ -59,7 +63,7 @@ export async function POST(request: Request) {
     const { data, error } = await supabase
       .from('func')
       .delete()
-      .eq('name', nameSelected)
+      .eq('name', name_selected)
       .select(); // O'chirilgan ma'lumotni qaytarib olish uchun
 
     // 5. Agar bazada xatolik bo'lsa

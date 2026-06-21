@@ -76,7 +76,7 @@ export default function DeveloperRequestPage() {
             
             {/* Name */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-medium text-muted-foreground">Ismingiz (name)</label>
+              <label className="text-xs font-mono font-medium text-muted-foreground">Ismingiz</label>
               <Input 
                 placeholder="Ismingizni kiriting" 
                 className="rounded-xl bg-background/50 focus-visible:ring-primary"
@@ -88,7 +88,7 @@ export default function DeveloperRequestPage() {
 
             {/* For Found */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-medium text-muted-foreground">Sizni qanday topamiz? (for_found)</label>
+              <label className="text-xs font-mono font-medium text-muted-foreground">Sizni qanday topamiz?</label>
               <Input 
                 placeholder="Masalan: tg: @username" 
                 className="rounded-xl bg-background/50 focus-visible:ring-primary text-sm"
@@ -100,7 +100,7 @@ export default function DeveloperRequestPage() {
 
             {/* Data */}
             <div className="space-y-1.5">
-              <label className="text-xs font-mono font-medium text-muted-foreground">Maqsadingiz va ma'lumot (data)</label>
+              <label className="text-xs font-mono font-medium text-muted-foreground">Maqsadingiz va ma'lumot</label>
               <Textarea 
                 placeholder="Nima maqsadda admin bo'lmoqchisiz..." 
                 className="rounded-xl bg-background/50 min-h-[120px] resize-none focus-visible:ring-primary text-sm leading-relaxed"
