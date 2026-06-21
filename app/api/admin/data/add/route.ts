@@ -8,22 +8,6 @@ export async function POST(request: Request) {
 
     const supabase = await createServer()
 
-    const getCategories = async () => {
-      const { data, error } = await supabase
-        .from('categories')
-        .select('*')
-      if (error) return null
-      return data
-    }
-
-    const addCategories = async (name: string) => {
-      const { data, error } = await supabase
-        .from('categories')
-        .insert({ name })
-      if (error) return null
-      return data
-    }
-
     // 1. Kelayotgan JSON ma'lumotlarni qabul qilamiz
     const body = await request.json();
     
@@ -33,13 +17,14 @@ export async function POST(request: Request) {
       }, 
       name,
       title,
-      category,
+      categories,
       difficulty, 
       code, 
       description, 
       timeComplexity, 
       spaceComplexity,
-      forRun
+      forRun,
+      version
     } = body;
 
     if (!adminUser || !adminPassword) {
@@ -79,14 +64,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const categories = await getCategories()
+    if (categories && Array.isArray(categories) && categories.length > 0) {
+      const { data: existingCats } = await supabase.from('categories').select('name');
+      const existingCatNames = existingCats ? existingCats.map(c => c.name) : [];
 
-    if (categories) {
-      if (!categories.find(u => u.name === category)) {
-       await addCategories(category)
+      const newCatsToInsert = categories
+        .filter(cat => !existingCatNames.includes(cat))
+        .map(cat => ({ name: cat }));
+
+      if (newCatsToInsert.length > 0) {
+        await supabase.from('categories').insert(newCatsToInsert);
       }
     }
-
+    
     // 4. Supabase bazasiga ma'lumotni qo'shamiz
     const { data, error } = await supabase
       .from('func')
@@ -94,13 +84,14 @@ export async function POST(request: Request) {
         {
           name,
           title,
-          category: category && category,
-          difficulty: difficulty && difficulty,
+          categories: categories || ['general'],
+          difficulty: difficulty || 'easy',
           code,
           description,
           time_complexity: timeComplexity,
           space_complexity: spaceComplexity,
           for_run: forRun,
+          version: version || 'all version supported',
         }
       ])
       .select(); // Qo'shilgan ma'lumotni qaytarib olish uchun

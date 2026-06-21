@@ -6,6 +6,9 @@ export async function GET(
   { params }: { params: Promise<{ name: string }> } 
 ) {
   try {
+    const giveLike = async (name: string) => {
+      await supabase.rpc('increment_like', { func_name: name })
+    }
 
     const supabase = await createServer()
 
@@ -30,6 +33,8 @@ export async function GET(
         { status: 500 }
       );
     }
+
+    await giveLike(name)
 
     return NextResponse.json(
       { message: `${name} nomli funksiya topildi`, data },

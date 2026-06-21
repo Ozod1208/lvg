@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     const supabase = await createServer()
 
-    const privatePasswordReal = process.env.private_password as string
+    const privatePasswordReal = process.env.PRIVATE_PASSWORD as string
 
     // 1. Kelayotgan JSON ma'lumotlarni qabul qilamiz
     const body = await request.json();
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const isMatch = bcrypt.compare(adminPassword, data?.password)
+    const isMatch = await bcrypt.compare(adminPassword, data?.password)
 
     if (!isMatch) {
       return NextResponse.json(
