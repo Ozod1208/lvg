@@ -20,6 +20,59 @@ export default function DocsPage() {
           </p>
         </section>
 
+        <section>
+          <h2 className="text-2xl font-semibold">CLI ni to&apos;g&apos;ri yuklash va konfiguratsiya qilish</h2>
+          <code className="block rounded-lg border p-3">
+          # Faylni 'lvg' deb nomini o'zgartiramiz <br /> <br />
+          mv lvg-linux lvg       # Linux uchun <br />
+          mv lvg-macos lvg       # macOS uchun <br />
+          ren lvg-win.exe lvg.exe     # Windows uchun <br /> <br />
+          # Bajarilish huquqini beramiz <br />
+          chmod +x lvg <br />
+          <br />
+          # Dasturni ishga tushirish <br />
+          ./lvg <br />
+          </code>  <br />
+          <h2 className="text-xl font-semibold">
+            Windows uchun konfiguratsiya qilish shart emas!
+          </h2> <br />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold">CLI dan foydalanish</h2>
+          <code className="block rounded-lg border p-3">
+          ╔═══════════════════════════════════════════╗ <br />
+          ║        🛸 LVG ECOSYSTEM MAIN MENU          ║ <br />
+          ╚═══════════════════════════════════════════╝ <br />
+          ? Bajariladigan amalni tanlang: <br />
+          🟩     Funksiyalar ro'yxatini ko'rish va yuklash <br />
+            🎯  Nom orqali to'g'ridan-to'g'ri yuklab olish <br />
+            ⚙️   Dasturni tizim PATH-ga qo'shish (Global CLI) <br />
+            ❌  Chiqish <br />
+          </code>  <br />
+          <h2 className="text-xl font-semibold">
+            Bizda 3 ta menyu bor:
+          </h2> <br />
+          <h2 className="text-xl font-semibold">
+            Birinchisi - platformadagi barcha funksiyalarni ko'rsatadi va ularni tanlab yuklab olishingiz mumkun.
+          </h2> 
+          <code className="block rounded-lg border p-3">
+            Funksiyalar ro'yxatini ko'rish va yuklash <br />
+          </code> <br />
+          <h2 className="text-xl font-semibold">
+            Ikinchisi - agar siz funksiyani nomini bilsangiz, qidirib o'tirmasdan yuklab olishingiz mumkun.
+          </h2>
+          <code className="block rounded-lg border p-3">
+          🎯  Nom orqali to'g'ridan-to'g'ri yuklab olish <br />
+          </code> <br />
+          <h2 className="text-xl font-semibold">
+            Uchinchisi - agar dasturni har qanday papkadan foydalanmoqchi bo'lsangiz, pathga qo'sish kerak, buni esa dasturni o'zi qiladi.
+          </h2> 
+          <code className="block rounded-lg border p-3">
+          🎯  Nom orqali to'g'ridan-to'g'ri yuklab olish <br />
+          </code>
+        </section>
+
         <section className="space-y-3">
           <h2 className="text-2xl font-semibold">
             Funksiyalarni qidirish

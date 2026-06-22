@@ -85,7 +85,7 @@ export default function FunctionsPage() {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         {/* Yagona boshqaruv paneli */}
         <div className="overflow-x-auto pb-4 border-b border-muted">
-          <TabsList className="bg-transparent gap-2 h-auto flex-wrap justify-start p-0">
+          <TabsList className="flex bg-transparent gap-2 h-auto justify-start p-0">
             {/* Asosiy filtrlar */}
             {[
               { id: 'all', label: 'Barchasi', icon: LayoutGrid },
