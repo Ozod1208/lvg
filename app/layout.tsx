@@ -18,7 +18,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lvg",
+  title: {
+    default: 'Lvg',
+    template: '%s | Lvg'
+  },
   description: "Created by Ozodjon",
 };
 

@@ -42,6 +42,10 @@ export async function POST(request: Request) {
       .eq('name', admin_user)
       .single()
 
+      if (errorr) {
+        return NextResponse.json({ error: errorr.message }, { status: 500 });
+      }
+
     if (!hashedPassword) {
       return NextResponse.json(
         { error: "Admin topilmadi" },
@@ -61,7 +65,7 @@ export async function POST(request: Request) {
     // 2. Eng muhim tekshirishlar (Validation)
     if (!title || !name || !code || !description || !time_complexity || !space_complexity || !for_run || !language || !file_end) {                       
       return NextResponse.json(
-        { error: "Majburiy maydonlar to'ldirilmadi! (name, title, code, description, timeComplexity, spaceComplexity, forRun, language, fileEnd)" },
+        { error: "Majburiy maydonlar to'ldirilmadi! (name, title, code, description, time_complexity, space_complexity, for_run, language, file_end)" },
         { status: 400 }
       );
     }

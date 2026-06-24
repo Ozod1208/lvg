@@ -6,29 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Download, Flame, Sparkles, Code2, Heart, Eye } from "lucide-react"
 import Link from "next/link"
+import { type LeanFunction } from '@/types'
 
-// Obyektingiz strukturasiga to'liq mos keladigan TypeScript Tipi
-export interface PythonFunction {
-  id: string
-  created_at: string
-  name: string
-  title: string
-  language: string
-  code: string
-  description: string
-  difficulty: "easy" | "medium" | "hard"
-  categories: string[]
-  likes_count: number
-  views_count: number
-  use_count: number
-  time_complexity: string
-  space_complexity: string
-  for_run: string
-  version: string // Agar obyektda satr ko'rinishida qo'shimcha versiya bo'lsa
-}
 
 interface FeaturedCardProps {
-  func: PythonFunction
+  func: LeanFunction
   badgeType?: "trending" | "new" | "top"
 }
 

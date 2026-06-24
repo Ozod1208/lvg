@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 
 export async function GET(
-  request: Request,
   { params }: { params: Promise<{ name: string }> } 
 ) {
   try {
