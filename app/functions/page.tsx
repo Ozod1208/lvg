@@ -3,9 +3,11 @@ import { Metadata } from "next";
 import { FunctionsPageClient } from "./client";
 import { type LeanFunction, type Category } from '@/types'
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Funksiyalar',
-  description: 'Funksiayalrimizga baho bering va keraklaridan foydalaning'
+  description: 'Funksiayalarimizga baho bering va keraklaridan foydalaning'
 }
 
 export default async function FunctionsPage() {

@@ -3,7 +3,7 @@ import { DocsPageClient } from "./client";
 
 export const metadata: Metadata = {
   title: 'Hujjatlar',
-  description: 'Tushunmagan narsangizni topib, tushunib oling'
+  description: "CLI yoki ochiq API larimizni ko'rib oling"
 }
 
 export default async function DocsPage() {
