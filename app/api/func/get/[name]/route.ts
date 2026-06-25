@@ -3,16 +3,11 @@ import { NextResponse } from 'next/server';
 import { createServer } from '@/utils/server';
 
 export async function GET(
+  request: Request,
   { params }: { params: Promise<{ name: string }> } 
 ) {
   try {
-    const increment_used = async (name: string) => {
-      await supabase.rpc('increment_use', { func_name: name })
-    }
-
-    const supabase = await createServer()
-
-    const { name } = await params
+    const { name } = await params;
 
     if (!name) {
       return NextResponse.json(
@@ -21,11 +16,19 @@ export async function GET(
       );
     }
 
+    // Supabase mijozini funksiyadan tepada yaratamiz
+    const supabase = await createServer();
+
+    const increment_used = async (func_name: string) => {
+      await supabase.rpc('increment_use', { func_name });
+    };
+
+    // 1. Avval funksiyani bazadan qidiramiz
     const { data, error } = await supabase
       .from('func')
       .select('*')
       .eq('name', name)
-      .maybeSingle()
+      .maybeSingle();
     
     if (error) {
       return NextResponse.json(
@@ -34,7 +37,16 @@ export async function GET(
       );
     }
 
-    await increment_used(name)
+    // 2. MANTIQIY TEKSHIRUV: Agar ma'lumot topilmasa, 404 qaytaramiz
+    if (!data) {
+      return NextResponse.json(
+        { error: `${name} nomli funksiya topilmadi` },
+        { status: 404 }
+      );
+    }
+
+    // 3. Faqat ma'lumot aniq topilgandagina hisoblagichni oshiramiz
+    await increment_used(name);
 
     return NextResponse.json(
       { message: `${name} nomli funksiya topildi`, data },

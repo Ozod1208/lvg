@@ -35,7 +35,7 @@ export function DownloadPageClient() {
             <TabsTrigger 
               key={idx} 
               value={item.name} 
-              className="flex-shrink-0"
+              className="shrink-0"
             >
               <item.icon size={14} className="mr-2" /> 
               <span className='text-1'>
